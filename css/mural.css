@@ -2,6 +2,7 @@
     text-align: center;
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     font-size: 1.2em;
 
 }
