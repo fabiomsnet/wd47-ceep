@@ -11,27 +11,6 @@ body {
     padding: 0 10%;
 }
 
-.mural {
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.mural--linhas {
-    flex-direction: column;
-}
-
-.mural--linhas  .cartao {
-    width: auto;
-    flex-basis: auto;
-    display: block;
-}
-
-#mudaLayout {
-    display: none;
-}
-
-
 .cartao--some {
     opacity: 0;
     transition: all .7s ease-in;

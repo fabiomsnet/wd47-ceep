@@ -40,7 +40,9 @@ $(".novoCartao").submit(function (event) {
     //pega o que o usuário digirou
     var campoConteudo = $(".novoCartao-conteudo");
 
-    var conteudo = campoConteudo.val().trim();
+    var conteudo = campoConteudo.val()
+        .trim()
+        .replace(/\n/g, "<br>");
 
     //cria os elementos do cartão e adiciona no DOM
     if (conteudo) {
@@ -55,7 +57,11 @@ $(".novoCartao").submit(function (event) {
             .click(removeCartao);
 
         //cria a div de opções
-        var opcoes = $("<div>").addClass("opcoesDoCartao").append(botaoRemove);
+        var opcoes = $("<div>").addClass("opcoesDoCartao")
+            .append(botaoRemove);
+
+            //chamada para nova função
+        var tipoCartao = decideTipoCartao(conteudo);
 
         var conteudoTag = $("<p>").addClass("cartao-conteudo")
             .append(conteudo);
@@ -63,6 +69,7 @@ $(".novoCartao").submit(function (event) {
         //cria atributo id no cartão
         $("<div>").attr("id", "cartao_" + contador)
             .addClass("cartao")
+            .addClass(tipoCartao)
             .append(opcoes)
             .append(conteudoTag)
             .prependTo(".mural");
@@ -71,3 +78,31 @@ $(".novoCartao").submit(function (event) {
     //apaga o contéudo do textarea
     campoConteudo.val("");
 });
+
+function decideTipoCartao(conteudo) {
+    var quebras = conteudo.split("<br>").length;
+
+    var totalDeLetras = conteudo.replace(/<br>/g, " ").length;
+
+    var ultimoMaior = "";
+    conteudo.replace(/<br>/g, " ")
+        .split(" ")
+        .forEach(function (palavra) {
+            if (palavra.length > ultimoMaior.length) {
+                ultimoMaior = palavra;
+            }
+        });
+
+    var tamMaior = ultimoMaior.length;
+
+    //no mínimo, todo cartão tem o texto pequeno
+    var tipoCartao = "cartao--textoPequeno";
+
+    if (tamMaior < 9 && quebras < 5 && totalDeLetras < 55) {
+        tipoCartao = "cartao--textoGrande";
+    } else if (tamMaior < 12 && quebras < 6 && totalDeLetras < 75) {
+        tipoCartao = "cartao--textoMedio";
+    }
+
+    return tipoCartao;
+}

@@ -16,6 +16,7 @@
     flex-basis: 190px;
     flex-grow: 1;
 }
+
 @media (min-width: 560px){
 
 	.cartao {
@@ -28,5 +29,23 @@
 
 	#mudaLayout {
         display: inline-block;
-    }
+	}
+	
+	.cartao--textoPequeno {
+		font-size: 1em;
+		width: 11em;
+		flex-basis: 11em;
+	}
+
+	.cartão--textoMedio {
+		font-size: 1.5em;
+		width: 9em;
+		flex-basis: 9em;
+	}
+
+	.cartao--textoGrande {
+		font-size: 2em;
+		width: 6em;
+		flex-basis: 6em;
+	}
 }
