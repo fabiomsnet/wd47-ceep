@@ -1,64 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/cabecalho.css">
     <link rel="stylesheet" href="css/opcoesDaPagina.css">
+    <link rel="stylesheet" href="css/cartao.css">
+    <link rel="stylesheet" href="css/opcoesDoCartao.css">
+    <link rel="stylesheet" href="css/novoCartao.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/jquery.js"></script>
+
     <title>Ceep</title>
 </head>
+
 <body>
 
     <header class="cabecalho container">
         <h1 class="cabecalho-logo">Ceep</h1>
         <div class="opcoesDaPagina">
-        <button id="mudaLayout" 
-            class="opcoesDaPagina-opcao opcoesDaPagina-botao" >
-            Linhas
-        </button>
-    </div>
+            <button id="mudaLayout" class="opcoesDaPagina-opcao opcoesDaPagina-botao">
+                Linhas
+            </button>
+        </div>
     </header>
+
+    <form class="novoCartao container">
+        <textarea class="novoCartao-conteudo" name="novoCartao-conteudo" placeholder="Digite aqui"></textarea>
+        <input class="novoCartao-salva" type="submit" value="Salvar">
+    </form>
 
     <section class="container">
         <section class="mural">
-            <div class="cartao">
+            <div class="cartao" id="cartao_1">
+                <div class="opcoesDoCartao">
+                    <button class="opcoesDoCartao-remove" data-ref="1">Remover</button>
+                </div>
                 <p class="cartao-conteudo">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam repudiandae 
-                    explicabo exercitationem culpa eaque ipsam. Et architecto ipsam ipsa quam cumque 
-                    accusamus itaque! Iure, illo! Incidunt voluptas earum sunt expedita.
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam repudiandae explicabo exercitationem culpa eaque ipsam.
+                    Et architecto ipsam ipsa quam cumque accusamus itaque! Iure, illo! Incidunt voluptas earum sunt expedita.
                 </p>
             </div>
-            <div class="cartao">
+            <div class="cartao" id="cartao_2">
+                <div class="opcoesDoCartao">
+                    <button class="opcoesDoCartao-remove" data-ref="2">Remover</button>
+                </div>
                 <p class="cartao-conteudo">
-                    Repellat cumque eum architecto excepturi ea consequuntur vero aliquam ipsum. 
-                    Amet odio cumque omnis aperiam eos
+                    Repellat cumque eum architecto excepturi ea consequuntur vero aliquam ipsum. Amet odio cumque omnis aperiam eos
                 </p>
             </div>
-            <div class="cartao">
+            <div class="cartao" id="cartao_3">
+                <div class="opcoesDoCartao">
+                    <button class="opcoesDoCartao-remove" data-ref="3">Remover</button>
+                </div>
                 <p class="cartao-conteudo">
-                    Perferendis doloribus illo sequi dolore beatae. Necessitatibus asperiores, 
-                    sed quidem mollitia obcaecati laudantium, delectus quibusdam nihil deleniti 
-                    nulla exercitationem autem a ratione possimus et quod. Aliquam aut non totam laborum.
+                    Perferendis doloribus illo sequi dolore beatae. Necessitatibus asperiores, sed quidem mollitia obcaecati laudantium, delectus
+                    quibusdam nihil deleniti nulla exercitationem autem a ratione possimus et quod. Aliquam aut non totam
+                    laborum.
                 </p>
             </div>
-            <div class="cartao">
+            <div class="cartao" id="cartao_4">
+                <div class="opcoesDoCartao">
+                    <button class="opcoesDoCartao-remove" data-ref="4">Remover</button>
+                </div>
                 <p class="cartao-conteudo">
-                    Ex eos ducimus exercitationem dolorem. Eius, ea iusto. Tenetur sequi debitis cum 
-                    laborum ab odio veritatis illo odit quod cupiditate, voluptate saepe quos ex 
-                    consectetur quas ipsam placeat! Quasi, dicta!
+                    Ex eos ducimus exercitationem dolorem. Eius, ea iusto. Tenetur sequi debitis cum laborum ab odio veritatis illo odit quod
+                    cupiditate, voluptate saepe quos ex consectetur quas ipsam placeat! Quasi, dicta!
                 </p>
             </div>
-            <div class="cartao">
+            <div class="cartao" id="cartao_5">
+                <div class="opcoesDoCartao">
+                    <button class="opcoesDoCartao-remove" data-ref="5">Remover</button>
+                </div>
                 <p class="cartao-conteudo">
-                    Sed quam porro, eaque quas est aliquam totam, consequuntur doloremque vel 
-                    tempora, dolorem nisi assumenda iusto sequi laborum? Et quo asperiores saepe 
-                    doloremque incidunt nihil voluptatem possimus tenetur ducimus alias!
+                    Sed quam porro, eaque quas est aliquam totam, consequuntur doloremque vel tempora, dolorem nisi assumenda iusto sequi laborum?
+                    Et quo asperiores saepe doloremque incidunt nihil voluptatem possimus tenetur ducimus alias!
                 </p>
             </div>
         </section>
     </section>
-    <script src="principal.js"></script>
+
+    <script src="js/principal.js"></script>
 </body>
+
 </html>
