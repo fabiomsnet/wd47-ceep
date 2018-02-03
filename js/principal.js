@@ -44,36 +44,37 @@ $(".novoCartao").submit(function (event) {
         .trim()
         .replace(/\n/g, "<br>");
 
+    adicionaCartao(conteudo);
     //cria os elementos do cartão e adiciona no DOM
-    if (conteudo) {
+    // if (conteudo) {
 
-        //soma um no contador
-        contador++;
+    //     //soma um no contador
+    //     contador++;
 
-        //cria o botão de remover e adiciona o atributo data-ref
-        var botaoRemove = $("<button>").addClass("opcoesDoCartao-remove")
-            .attr("data-ref", contador)
-            .text("Remover")
-            .click(removeCartao);
+    //     //cria o botão de remover e adiciona o atributo data-ref
+    //     var botaoRemove = $("<button>").addClass("opcoesDoCartao-remove")
+    //         .attr("data-ref", contador)
+    //         .text("Remover")
+    //         .click(removeCartao);
 
-        //cria a div de opções
-        var opcoes = $("<div>").addClass("opcoesDoCartao")
-            .append(botaoRemove);
+    //     //cria a div de opções
+    //     var opcoes = $("<div>").addClass("opcoesDoCartao")
+    //         .append(botaoRemove);
 
-            //chamada para nova função
-        var tipoCartao = decideTipoCartao(conteudo);
+    //         //chamada para nova função
+    //     var tipoCartao = decideTipoCartao(conteudo);
 
-        var conteudoTag = $("<p>").addClass("cartao-conteudo")
-            .append(conteudo);
+    //     var conteudoTag = $("<p>").addClass("cartao-conteudo")
+    //         .append(conteudo);
 
-        //cria atributo id no cartão
-        $("<div>").attr("id", "cartao_" + contador)
-            .addClass("cartao")
-            .addClass(tipoCartao)
-            .append(opcoes)
-            .append(conteudoTag)
-            .prependTo(".mural");
-    }
+    //     //cria atributo id no cartão
+    //     $("<div>").attr("id", "cartao_" + contador)
+    //         .addClass("cartao")
+    //         .addClass(tipoCartao)
+    //         .append(opcoes)
+    //         .append(conteudoTag)
+    //         .prependTo(".mural");
+    // }
 
     //apaga o contéudo do textarea
     campoConteudo.val("");
@@ -107,16 +108,102 @@ function decideTipoCartao(conteudo) {
     return tipoCartao;
 }
 
-$("#busca").on("input", function() {
+$("#busca").on("input", function () {
     var busca = $(this).val().trim();
 
     if (busca.length) {
-        $(".cartao").hide().filter(function() {
+        $(".cartao").hide().filter(function () {
             return $(this).find(".cartao-conteudo")
-                            .text()
-                            .match(new RegExp(busca, "i"));
+                .text()
+                .match(new RegExp(busca, "i"));
         }).show();
     } else {
         $(".cartao").show();
     }
 });
+
+$("#ajuda").click(function () {
+    $.getJSON("https://ceep.herokuapp.com/cartoes/instrucoes",
+        function (res) {
+            console.log(res);
+            res.instrucoes.forEach(function (instrucoes) {
+                adicionaCartao(instrucoes.conteudo, instrucoes.cor);
+            });
+        }
+    );
+});
+
+function adicionaCartao(conteudo, cor) {
+    contador++;
+
+    var botaoRemove = $("<button>").addClass("opcoesDoCartao-remove")
+        .attr("data-ref", contador)
+        .text("Remover")
+        .click(removeCartao);
+
+    var opcoes = $("<div>").addClass("opcoesDoCartao")
+        .append(botaoRemove);
+
+    var tipoCartao = decideTipoCartao(conteudo);
+
+    var conteudoTag = $("<p>").addClass("cartao-conteudo")
+        .append(conteudo);
+
+    $("<div>").attr("id", "cartao_" + contador)
+        .addClass("cartao")
+        .addClass(tipoCartao)
+        .append(opcoes)
+        .append(conteudoTag)
+        .css("background-color", cor)
+        .prependTo(".mural");
+}
+
+var usuario = "fabio@exemplo.com";
+
+$("#sync").click(function () {
+
+    $("#sync").removeClass("botaoSync--sincronizado");
+    $("#sync").addClass("botaoSync--esperando");
+
+    var cartoes = [];
+
+    $(".cartao").each(function () {
+        var cartao = {};
+        cartao.conteudo = $(this).find(".cartao-conteudo").html();
+        cartoes.push(cartao);
+    });
+
+    var mural = {
+        usuario: usuario,
+        cartoes: cartoes
+    }
+
+    $.ajax({
+        url: "https://ceep.herokuapp.com/cartoes/salvar",
+        method: "POST",
+        data: mural,
+        success: function (res) {
+            $("#sync").addClass("botaoSync--sincronizado");
+            console.log(res.quantidade + " cartões salvos em " + res.usuario);
+        },
+        error: function () {
+            $("#sync").addClass("botaoSync--deuRuim");
+            console.log("Não foi possível salvar o mural");
+        },
+        complete: function () {
+            $("#sync").removeClass("botaoSync--esperando");
+        }
+    });
+});
+
+$.getJSON(
+    "https://ceep.herokuapp.com/cartoes/carregar?callback=?",
+    { usuario: usuario },
+    function (res) {
+        var cartoes = res.cartoes;
+        console.log(cartoes.length + " carregados em " + res.usuario);
+        cartoes.forEach(function (cartao) {
+            adicionaCartao(cartao.conteudo);
+        });
+    }
+);
