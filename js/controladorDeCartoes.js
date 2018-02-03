@@ -1,4 +1,5 @@
-var adicionaCartao = (function () {
+var controladorDeCartoes = (function () {
+    "use strict"
 
     function removeCartao() {
         var cartao = document.querySelector("#cartao_" + this.dataset.ref);
@@ -46,7 +47,7 @@ var adicionaCartao = (function () {
 
     var contador = 0;
 
-    return function (conteudo, cor) {
+    function adicionaCartao(conteudo, cor) {
         contador++;
 
         var botaoRemove = $("<button>").addClass("opcoesDoCartao-remove")
@@ -70,4 +71,12 @@ var adicionaCartao = (function () {
             .css("background-color", cor)
             .prependTo(".mural");
     }
+
+    return {
+        adicionaCartao: adicionaCartao,
+        idUltimoCartao: function () {
+            return contador;
+        }
+    }
+
 })();

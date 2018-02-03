@@ -10,7 +10,7 @@ $(".novoCartao").submit(function (event) {
         .trim()
         .replace(/\n/g, "<br>");
 
-    adicionaCartao(conteudo);
+    controladorDeCartoes.adicionaCartao(conteudo);
 
     campoConteudo.val("");
 });

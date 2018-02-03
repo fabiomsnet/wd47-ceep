@@ -3,7 +3,7 @@ $("#ajuda").click(function () {
         function (res) {
             console.log(res);
             res.instrucoes.forEach(function (instrucoes) {
-                adicionaCartao(instrucoes.conteudo, instrucoes.cor);
+                controladorDeCartoes.adicionaCartao(instrucoes.conteudo, instrucoes.cor);
             });
         }
     );
