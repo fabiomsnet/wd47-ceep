@@ -52,7 +52,7 @@ $("#sync").click(function() {
             var cartoes = res.cartoes;
             console.log(cartoes.length + " carregados em " + res.usuario);
             cartoes.forEach(function (cartao) {
-                controladorDeCartoes.adicionaCartao(cartao.conteudo);
+                controladorDeCartoes.adicionaCartao(cartao.conteudo, cartao.cor);
             });
         }
     );
