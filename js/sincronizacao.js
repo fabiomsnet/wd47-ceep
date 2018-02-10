@@ -1,7 +1,11 @@
+$("#sync").click(function() {
+    $(document).trigger("precisaSincronizar");
+});
+
 (function () {
     var usuario = "fabio@exemplo.com";
 
-    $("#sync").click(function () {
+    $(document).on("precisaSincronizar", function () {
 
         $("#sync").removeClass("botaoSync--sincronizado");
         $("#sync").addClass("botaoSync--esperando");
@@ -11,6 +15,7 @@
         $(".cartao").each(function () {
             var cartao = {};
             cartao.conteudo = $(this).find(".cartao-conteudo").html();
+            cartao.cor = $(this).css("background -color");
             cartoes.push(cartao);
         });
 

@@ -1,5 +1,4 @@
 var controladorDeCartoes = (function () {
-    "use strict"
 
     function removeCartao() {
         var cartao = document.querySelector("#cartao_" + this.dataset.ref);
@@ -7,6 +6,7 @@ var controladorDeCartoes = (function () {
         cartao.classList.add("cartao--some");
         setTimeout(function () {
             cartao.remove();
+            $(document).trigger("precisaSincronizar");
         }, 400);
     }
 

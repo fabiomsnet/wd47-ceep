@@ -1,16 +1,23 @@
-$(".novoCartao").submit(function (event) {
+(function (controlador) {
+    "use strict"
 
-    //impede que a página recarregue
-    event.preventDefault();
+    $(".novoCartao").submit(function (event) {
 
-    //pega o que o usuário digirou
-    var campoConteudo = $(".novoCartao-conteudo");
+        //pega o que o usuário digirou
+        var campoConteudo = $(".novoCartao-conteudo");
 
-    var conteudo = campoConteudo.val()
-        .trim()
-        .replace(/\n/g, "<br>");
+        var conteudo = campoConteudo.val()
+            .trim()
+            .replace(/\n/g, "<br>");
 
-    controladorDeCartoes.adicionaCartao(conteudo);
+        if (conteudo) {
+            controlador.adicionaCartao(conteudo);
+            $(document).trigger("precisaSincronizar");
+        }
 
-    campoConteudo.val("");
-});
+        campoConteudo.val("");
+        //impede que a página recarregue
+        event.preventDefault();
+    });
+
+})(controladorDeCartoes);
