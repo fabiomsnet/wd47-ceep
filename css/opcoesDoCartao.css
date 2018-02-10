@@ -29,9 +29,9 @@
 	margin-left: .5em;
 }
 
-/*.opcoesDoCartao-remove {
+.opcoesDoCartao-remove {
 	background-image: url("../img/close.svg");
-}*/
+}
 
 .opcoesDoCartao-edita {
 	background-image: url("../img/edit.svg");
