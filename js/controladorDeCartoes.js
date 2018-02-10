@@ -60,7 +60,7 @@ var controladorDeCartoes = (function () {
         var tipoCartao = decideTipoCartao(conteudo);
 
         var conteudoTag = $("<p>").addClass("cartao-conteudo")
-            .attr("contenteditable", true)
+            .attr("contenteditable", false)
             .on("input", editaCartaoHandler)
             .append(conteudo);
 
