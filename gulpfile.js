@@ -1,4 +1,6 @@
 var gulp = require("gulp");
-gulp.task("oi", function() {
-    console.log("Olá mundo")
+var autoprefixer = require("gulp-autoprefixer");
+
+gulp.task("copy", function() {
+    return gulp.src("src/**/*").pipe(gulp.dest("dist"))
 });
