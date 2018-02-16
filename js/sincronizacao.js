@@ -15,7 +15,7 @@ $("#sync").click(function() {
         $(".cartao").each(function () {
             var cartao = {};
             cartao.conteudo = $(this).find(".cartao-conteudo").html();
-            cartao.cor = $(this).css("background -color");
+            cartao.cor = $(this).css("background-color");
             cartoes.push(cartao);
         });
 

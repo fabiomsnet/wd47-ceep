@@ -35,7 +35,7 @@ var criaOpcoesDoCartao = (function () {
         ];
 
         var opcoesDeCor = $("<div>").addClass("opcoesDoCartao-cores")
-            .attr("data-ref, idDoCartao");
+            .attr("data-ref", idDoCartao);
 
         cores.forEach(function (cor) {
             var idInputCor = "cor" + cor.nome + "-cartao" + idDoCartao;
